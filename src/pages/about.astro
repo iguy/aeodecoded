@@ -1,0 +1,77 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE, PLATFORMS } from '../config.js';
+
+const description =
+  'Gary Crossey is the host of AEO Decoded and founder of Irishguy Design Studio in Asheville, NC. He builds and tests the Answer Engine Optimization methods the show teaches.';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: 'Gary Crossey',
+  url: new URL('/about/', SITE.url).href,
+  jobTitle: 'Host, AEO Decoded',
+  worksFor: {
+    '@type': 'Organization',
+    name: SITE.studioName,
+    url: SITE.studioUrl,
+  },
+  email: 'mailto:garycrossey@irishguy.us',
+  knowsAbout: [
+    'Answer Engine Optimization',
+    'Structured data and schema markup',
+    'Web architecture and edge deployment',
+    'Brand and web design',
+  ],
+};
+---
+
+<Base title="About Gary Crossey" description={description} schema={schema} currentPath="/about/">
+  <article class="prose">
+    <header class="episode-head">
+      <p class="field field--blue">Host // Entity record</p>
+      <h1>Gary Crossey</h1>
+      <p class="citable">
+        <mark>Gary Crossey is the host of AEO Decoded and founder of Irishguy Design
+        Studio in Asheville, North Carolina — he builds, tests, and proves the
+        Answer Engine Optimization methods the show teaches.</mark>
+      </p>
+    </header>
+
+    <h2>About the host</h2>
+    <p>
+      Gary makes Answer Engine Optimization make sense. With a Belfast accent and a
+      designer's eye, he translates the technical mechanics of AI search — schema,
+      entities, structure, speed — into plain language and short, tactical episodes.
+    </p>
+    <p>
+      He's not a commentator. Through
+      <a href={SITE.studioUrl} rel="noopener">{SITE.studioName}</a>, Gary designs
+      and engineers the sites where these methods get tested — including this one,
+      which was rebuilt from WordPress to a custom edge architecture as the show's
+      own public test bench.
+    </p>
+
+    <h2>About the show</h2>
+    <p>
+      AEO Decoded breaks down how websites earn citations from AI answer engines
+      like ChatGPT, Perplexity, and Gemini. Seasons 1 and 2 cover the fundamentals
+      in depth. Season 3 is a build log: real changes to real sites, measured in
+      public. The editorial rule is simple — every episode is a principle or a
+      tested result. Nothing else ships.
+    </p>
+
+    <h2>Get in touch</h2>
+    <p>
+      Questions, topic suggestions, or AEO war stories:
+      <a href="mailto:garycrossey@irishguy.us">garycrossey@irishguy.us</a>.
+      Listener questions get featured in Q&amp;A lightning rounds.
+    </p>
+
+    <ul class="platforms" aria-label="Listen on your favorite platform">
+      {PLATFORMS.map((p) => (
+        <li><a href={p.url} rel="noopener">{p.name}</a></li>
+      ))}
+    </ul>
+  </article>
+</Base>

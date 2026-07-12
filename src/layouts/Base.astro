@@ -1,0 +1,66 @@
+---
+import '@fontsource-variable/archivo';
+import '@fontsource/ibm-plex-mono/400.css';
+import '@fontsource/ibm-plex-mono/500.css';
+import '../styles/global.css';
+import { SITE } from '../config.js';
+
+const {
+  title = SITE.title,
+  description = SITE.description,
+  schema = null,
+  currentPath = '/',
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, SITE.url).href;
+const pageTitle =
+  title === SITE.title ? `${SITE.title} — ${SITE.tagline}` : `${title} — ${SITE.title}`;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content={SITE.title} />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta name="twitter:card" content="summary" />
+    {schema && (
+      <script type="application/ld+json" set:html={JSON.stringify(schema)} />
+    )}
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="wrap">
+        <a class="wordmark" href="/">AEO<span>//</span>DECODED</a>
+        <nav class="site-nav" aria-label="Site">
+          <a href="/episodes/" aria-current={currentPath.startsWith('/episodes') ? 'page' : undefined}>Episodes</a>
+          <a href="/the-reset/" aria-current={currentPath.startsWith('/the-reset') ? 'page' : undefined}>The Reset</a>
+          <a href="/about/" aria-current={currentPath.startsWith('/about') ? 'page' : undefined}>About</a>
+          <a href={SITE.studioUrl} rel="noopener">Studio</a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="wrap">
+      <slot />
+    </main>
+
+    <footer class="site-footer">
+      <div class="wrap">
+        <span>© {new Date().getFullYear()} {SITE.title} · Hosted by {SITE.author}</span>
+        <span>
+          Built &amp; proven by <a href={SITE.studioUrl} rel="noopener">{SITE.studioName}</a>
+        </span>
+      </div>
+    </footer>
+  </body>
+</html>

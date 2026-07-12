@@ -1,0 +1,17 @@
+---
+const { episodes } = Astro.props;
+---
+
+<ul class="ledger">
+  {episodes.map((ep) => (
+    <li>
+      <a href={`/episodes/${ep.slug}/`}>
+        <span class="ep-id">{ep.id ?? ep.dateLabel}</span>
+        <span class="ep-title">{ep.title}</span>
+        <span class="ep-meta">
+          {[ep.durationLabel, ep.id ? ep.dateLabel : null].filter(Boolean).join(' · ')}
+        </span>
+      </a>
+    </li>
+  ))}
+</ul>

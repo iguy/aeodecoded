@@ -1,0 +1,11 @@
+# AEO Decoded
+
+> AEO Decoded is a podcast by Gary Crossey that documents, tests, and proves
+> how websites earn citations from AI answer engines like ChatGPT, Perplexity,
+> and Gemini. Seasons 1-2 cover AEO fundamentals; Season 3 is a public build
+> log with measured results.
+
+## Key pages
+- [Episodes](https://aeodecoded.ai/episodes/): full archive, Seasons 1-2
+- [The Reset](https://aeodecoded.ai/the-reset/): why Season 3 restarted
+- [Irishguy Design Studio](https://www.irishguydesign.studio/): the studio that builds this method for clients

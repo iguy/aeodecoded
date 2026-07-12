@@ -1,0 +1,41 @@
+---
+import Base from '../../layouts/Base.astro';
+import EpisodeLedger from '../../components/EpisodeLedger.astro';
+import { getSeasons } from '../../lib/episodes.js';
+import { SITE } from '../../config.js';
+
+const seasons = await getSeasons();
+const count = seasons.reduce((n, s) => n + s.episodes.length, 0);
+---
+
+<Base
+  title="Episodes"
+  description={`Every episode of ${SITE.title}: ${count} short, tactical episodes on Answer Engine Optimization across Seasons 1 and 2.`}
+  currentPath="/episodes/"
+>
+  <section class="hero">
+    <p class="field field--blue">Archive // {count} episodes</p>
+    <h1>Episodes</h1>
+    <p class="citable">
+      <mark>Seasons 1 and 2 cover the fundamentals of Answer Engine Optimization in
+      depth — from schema and entity clarity to trust signals and measurement.</mark>
+    </p>
+  </section>
+
+  {seasons.map((s) => (
+    <section class="season-block">
+      <span class="field">{s.label} // {s.episodes.length} episodes</span>
+      <EpisodeLedger episodes={s.episodes} />
+    </section>
+  ))}
+
+  <section class="cta-strip">
+    <p class="field">Up next</p>
+    <h2>Season 3 starts over — with receipts.</h2>
+    <p>
+      The next season is a build log: this site's own migration from WordPress to the
+      edge, documented and measured episode by episode.
+    </p>
+    <a class="button" href="/the-reset/">Why we reset Season 3</a>
+  </section>
+</Base>

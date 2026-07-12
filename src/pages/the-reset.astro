@@ -1,0 +1,96 @@
+---
+import Base from '../layouts/Base.astro';
+import { SITE } from '../config.js';
+
+const description =
+  'Why AEO Decoded pulled Season 3 two episodes in, rebuilt its own site from WordPress to the edge, and relaunched with a new editorial standard: principles or tested results — nothing else ships.';
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'Article',
+  headline: 'The Reset: why Season 3 starts over',
+  description,
+  author: { '@type': 'Person', name: SITE.author },
+  publisher: { '@type': 'Organization', name: SITE.studioName, url: SITE.studioUrl },
+  mainEntityOfPage: new URL('/the-reset/', SITE.url).href,
+};
+---
+
+<Base title="The Reset" description={description} schema={schema} currentPath="/the-reset/">
+  <article class="prose">
+    <header class="episode-head">
+      <p class="field field--blue">Announcement // Season 3</p>
+      <h1>The Reset</h1>
+      <p class="citable">
+        <mark>We pulled the first two episodes of Season 3, rebuilt this site from
+        WordPress to the edge, and set a new bar: nothing ships unless it's a
+        principle or a tested result.</mark>
+      </p>
+    </header>
+
+    <h2>What happened</h2>
+    <p>
+      Two episodes into recording Season 3, I stopped. The episodes were about
+      building AEO into a new site — and the advice in them was true. I'd seen it
+      work. But I kept hitting the same honest problem: <em>it all depends on how
+      you're set up.</em> Advice that's conditional on your architecture isn't a
+      method. It's a maybe.
+    </p>
+    <p>
+      Seasons 1 and 2 covered the fundamentals of Answer Engine Optimization in
+      depth, and I stand behind them. But the field around us was filling up with
+      tactics — the kind that expire the way SEO tricks always have. I didn't want
+      to add to that pile. I didn't want to publish anything I couldn't get behind
+      as a genuinely improved approach.
+    </p>
+
+    <h2>What changed</h2>
+    <p>
+      So instead of recording, I built. This site — the one you're reading — was
+      moved off WordPress and deployed as a custom static architecture on a global
+      edge network. No plugins, no database, no bloat between the content and the
+      machines reading it. The same standard I built for
+      <a href={SITE.studioUrl} rel="noopener">the studio</a>: perfect Lighthouse
+      scores, machine-readable structure, and every AEO principle from the show
+      running live on every page.
+    </p>
+    <p>
+      That's the difference between talking about the method and being the method.
+      This site is now the test bench for everything the podcast claims.
+    </p>
+
+    <h2>The new standard</h2>
+    <p>
+      Season 3 runs on one editorial rule: every episode is either a
+      <strong>principle</strong> — something true about how machines read the web
+      that doesn't expire with the next model release — or a
+      <strong>tested result</strong> — something we tried on a real site, measured,
+      and can show you. Circulating tactics we can't verify don't ship. If the
+      industry is pushing something we haven't proven, we'll test it first and
+      report what actually happened.
+    </p>
+
+    <h2>What's coming</h2>
+    <p>
+      Season 3 is a build log. The WordPress-to-edge migration you're standing on.
+      The schema layer. The measurement system. And the part nobody in this field
+      shows you: tracking whether any of it actually earns citations from ChatGPT,
+      Perplexity, and Gemini — in public, with receipts.
+    </p>
+    <p>
+      Seasons 1 and 2 are all here in the <a href="/episodes/">archive</a> if you
+      want the fundamentals first. Season 3 is where we prove them.
+    </p>
+    <p>— {SITE.author}</p>
+
+    <section class="cta-strip">
+      <p class="field">Follow along</p>
+      <h2>Don't miss the relaunch.</h2>
+      <p>
+        Follow the show on your favorite platform and you'll get Season 3 the moment
+        it lands.
+      </p>
+      <a class="button" href="/#listen">Choose your platform</a>
+    </section>
+  </article>
+</Base>

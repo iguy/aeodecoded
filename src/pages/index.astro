@@ -1,11 +1,68 @@
 ---
-import Welcome from '../components/Welcome.astro';
-import Layout from '../layouts/Layout.astro';
+import Base from '../layouts/Base.astro';
+import EpisodeLedger from '../components/EpisodeLedger.astro';
+import { getShow } from '../lib/episodes.js';
+import { SITE, PLATFORMS } from '../config.js';
 
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+const show = await getShow();
+const latest = show.episodes.slice(0, 6);
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'PodcastSeries',
+  name: SITE.title,
+  description: SITE.description,
+  url: SITE.url,
+  image: show.image ?? undefined,
+  webFeed: 'https://feeds.transistor.fm/aeo-decoded',
+  author: { '@type': 'Person', name: SITE.author },
+  publisher: { '@type': 'Organization', name: SITE.studioName, url: SITE.studioUrl },
+  sameAs: PLATFORMS.map((p) => p.url),
+};
 ---
 
-<Layout>
-	<Welcome />
-</Layout>
+<Base schema={schema} currentPath="/">
+  <section class="hero">
+    <p class="field field--blue kicker">Podcast // {SITE.tagline}</p>
+    <h1>Getting cited is the new getting found.</h1>
+    <p class="citable">
+      <mark>{SITE.title} is a podcast that documents, tests, and proves how websites
+      earn citations from AI answer engines like ChatGPT, Perplexity, and Gemini.</mark>
+    </p>
+    <ul class="platforms" id="listen" aria-label="Listen on your favorite platform">
+      {PLATFORMS.map((p) => (
+        <li><a href={p.url} rel="noopener">{p.name}</a></li>
+      ))}
+    </ul>
+  </section>
+
+  <aside class="reset-banner">
+    <p class="field">Announcement // Season 3</p>
+    <h2>We pulled Season 3 and started over.</h2>
+    <p>
+      Two episodes in, the advice was true — but conditional. So we stopped, rebuilt
+      this site from WordPress to the edge, and set a new editorial standard: nothing
+      ships unless it's a principle or a tested result. This site is now the test bench.
+    </p>
+    <a class="go" href="/the-reset/">Read why →</a>
+  </aside>
+
+  <section class="season-block">
+    <span class="field">Latest episodes</span>
+    <EpisodeLedger episodes={latest} />
+    <p style="margin-top:1rem;">
+      <a href="/episodes/">All episodes, Seasons 1–2 →</a>
+    </p>
+  </section>
+
+  <section class="cta-strip">
+    <p class="field">The method, applied</p>
+    <h2>This site is the case study.</h2>
+    <p>
+      Everything the show teaches — answer-first structure, entity clarity, schema,
+      edge performance — is running on this page right now. If you want it running
+      on yours, that's what the studio does.
+    </p>
+    <a class="button" href={SITE.studioUrl} rel="noopener">Work with the studio</a>
+  </section>
+</Base>

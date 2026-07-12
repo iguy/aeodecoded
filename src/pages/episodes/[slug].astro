@@ -1,0 +1,104 @@
+---
+import Base from '../../layouts/Base.astro';
+import { getShow } from '../../lib/episodes.js';
+import { SITE, PLATFORMS } from '../../config.js';
+
+export async function getStaticPaths() {
+  const show = await getShow();
+  return show.episodes.map((episode) => ({
+    params: { slug: episode.slug },
+    props: { episode },
+  }));
+}
+
+const { episode: ep } = Astro.props;
+
+// Companion transcripts live in src/notes/ as {sNeN}.html — matched by
+// episode number, so feed title changes never break the link.
+const noteFiles = import.meta.glob('../../notes/*.html', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+});
+const noteKey = ep.idShort
+  ? Object.keys(noteFiles).find((p) => p.endsWith(`/${ep.idShort.toLowerCase()}.html`))
+  : null;
+const transcript = noteKey ? noteFiles[noteKey] : null;
+
+const schema = {
+  '@context': 'https://schema.org',
+  '@type': 'PodcastEpisode',
+  name: ep.title,
+  url: new URL(`/episodes/${ep.slug}/`, SITE.url).href,
+  datePublished: ep.dateISO,
+  description: ep.citable,
+  timeRequired: ep.durationSeconds ? `PT${Math.round(ep.durationSeconds / 60)}M` : undefined,
+  episodeNumber: ep.number ?? undefined,
+  partOfSeason: ep.season
+    ? { '@type': 'PodcastSeason', seasonNumber: ep.season }
+    : undefined,
+  partOfSeries: {
+    '@type': 'PodcastSeries',
+    name: SITE.title,
+    url: SITE.url,
+  },
+  associatedMedia: {
+    '@type': 'AudioObject',
+    contentUrl: ep.audioUrl,
+    encodingFormat: ep.audioType,
+  },
+  author: { '@type': 'Person', name: SITE.author },
+};
+---
+
+<Base title={ep.title} description={ep.citable} schema={schema} currentPath="/episodes/">
+  <article>
+    <header class="episode-head">
+      <div class="record-line">
+        {ep.id && <span class="field field--blue">{ep.id}</span>}
+        <span class="field">{ep.dateLabel}</span>
+        {ep.durationLabel && <span class="field">{ep.durationLabel}</span>}
+      </div>
+      <h1>{ep.title}</h1>
+      {ep.citable && (
+        <p class="citable"><mark>{ep.citable}</mark></p>
+      )}
+    </header>
+
+    <div class="player-block">
+      <p class="field" style="margin-bottom:0.5rem;">Listen // {ep.idShort ?? SITE.title}</p>
+      <audio controls preload="none" src={ep.audioUrl}>
+        Your browser doesn't support the audio element.
+        <a href={ep.audioUrl}>Download the episode</a>.
+      </audio>
+    </div>
+
+    <div class="notes" set:html={ep.descriptionHtml} />
+
+    {transcript && (
+      <section class="notes" aria-label="Episode transcript">
+        <p class="field field--blue">Transcript // full written version</p>
+        <div set:html={transcript} />
+      </section>
+    )}
+
+    <section aria-label="Listen on your favorite platform">
+      <p class="field">Also on</p>
+      <ul class="platforms">
+        {PLATFORMS.map((p) => (
+          <li><a href={p.url} rel="noopener">{p.name}</a></li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="cta-strip">
+      <p class="field">Apply it</p>
+      <h2>Want this working on your site?</h2>
+      <p>
+        The techniques in this episode run live on this page — structure, schema, and
+        speed included. The studio builds the same system for clients.
+      </p>
+      <a class="button" href={SITE.studioUrl} rel="noopener">Work with the studio</a>
+    </section>
+  </article>
+</Base>

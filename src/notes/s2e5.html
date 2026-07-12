@@ -1,0 +1,199 @@
+<iframe width="100%" height="180" frameborder="no" scrolling="no" seamless="" src="https://share.transistor.fm/e/504bd414"></iframe>
+
+<figure class="wp-block-embed is-type-video is-provider-youtube wp-block-embed-youtube wp-embed-aspect-16-9 wp-has-aspect-ratio"><div class="wp-block-embed__wrapper">
+https://youtu.be/YBQ4kxc_PeA
+</div></figure>
+
+<p>Welcome to the companion page for <strong>Episode 2.5 — Multimodal Evidence Design for LLMs</strong>, part of Season 2 of the AEO Decoded podcast.</p>
+
+<p>In this episode, we explore how to transform your images, charts, audio, and video content into citation-worthy evidence packages that AI systems can understand, extract, and reference. You'll learn practical techniques for writing claim-rich alt text, implementing proper schema markup, and creating machine-readable multimedia content that LLMs trust enough to cite.</p>
+
+<p>This page includes the full episode transcript, key takeaways, actionable homework, and all the resources you need to implement multimodal evidence design in your content strategy.</p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+
+<h2 class="wp-block-heading">Full Episode Transcript</h2>
+
+<p><strong>Opening </strong></p>
+
+<p>Hello my lovely listeners, welcome back to AEO Decoded. I'm your host, Gary Crossey.</p>
+
+<p>Today we're tackling episode 2.5 — Multimodal Evidence Design for LLMs. And listen, this is where things get pure dead brilliant, so it is. Over the 10 episodes of Season 2, we're diving into advanced AEO strategies that separate good optimization from world-class optimization. We've already covered entity graphs, schema stacks, conversation patterns, and RAG-aware content. Now it's time to talk about something that most folks are completely ignoring: how to make your images, videos, charts, and audio files speak AI fluently.</p>
+
+<p>If you caught Season 1's Episode 7 on Multimodal Optimization, you'll remember we introduced the basics of optimizing beyond text. Well, today we're going deep into the advanced tactics that make LLMs actually extract claims and context from your visual and audio content.</p>
+
+<p>Last episode, we explored RAG-aware content patterns and how LLMs chunk and retrieve your content. Today, we're extending that thinking to everything that isn't text.</p>
+
+<p>This is my personal outlet because, truth be told, not many people are talking about advanced AEO yet - but they will be! So if you're interested, please reach out.</p>
+
+<p>Today we're diving deep into multimodal evidence design - stick with me for the next 15 minutes and you'll walk away with strategies you can implement right away.</p>
+
+<p>Right, so picture this. A few months back, I was working with a client - can't name names, but they're in the healthcare space - and they had this gorgeous library of medical illustrations. I'm talking hundreds of beautifully designed diagrams explaining procedures, anatomy, conditions, the works. Proper professional stuff.</p>
+
+<p>They were dead proud of these images, and rightly so. But here's the thing: when we tested how AI search engines were citing their content, these images might as well have been invisible. The alt text was generic rubbish like "medical diagram 47" and "procedure illustration." No captions, no structured data, nothing that would help an LLM understand what claims these images were making.</p>
+
+<p>Meanwhile, their competitor - with honestly less polished visuals - was getting cited left and right. Why? Because every single image had descriptive alt text that included the actual medical claim, proper figure captions that explained context, and ImageObject schema that tied it all together.</p>
+
+<p>When someone asked ChatGPT or Perplexity about a specific procedure, the competitor's images were being referenced with proper attribution. My client's beautiful illustrations? Nowhere to be seen.</p>
+
+<p>That's when it clicked for them: in the age of AI, it doesn't matter how stunning your visuals are if the machines can't extract meaning from them. And that's exactly what we're solving today.</p>
+
+<p>So why does multimodal evidence design matter at this advanced level? Because LLMs are increasingly multimodal themselves - they can process images, video, audio, and text together. But here's the rub: they need help understanding what claims your non-text content is making.</p>
+
+<p>Back in Season 1, we covered the basics: add alt text, include captions, maybe throw in some schema. That was the foundation. But at this advanced level, we're thinking like an LLM. We're asking: "If an AI model encounters this image in its training data or retrieval context, can it extract factual claims? Can it attribute those claims back to me? Can it use this as evidence to support an answer?"</p>
+
+<p>This isn't just about accessibility anymore - though that remains crucial. This is about making your multimodal content citation-worthy. When an AI synthesizes an answer about your topic, you want your chart to be the one it references. You want your video to be the source it attributes. You want your infographic to be the evidence it trusts.</p>
+
+<p>Today, you're going to learn how to design images with claim-rich alt text, structure figure captions that LLMs can parse, create video transcripts with strategic timestamps, implement proper VideoObject and AudioObject schema, and make your charts and diagrams machine-readable gold mines of data.</p>
+
+<p>This connects directly to everything we've covered - entity graphs need visual evidence, schema stacks need multimodal nodes, conversation patterns need supporting visuals, and RAG systems need to chunk and retrieve your multimedia content effectively.</p>
+
+<p>Alright folks, it's time for 'The Breakdown' - where we take those fancy-pants AI concepts and break them down into bite-sized morsels that won't give you digital indigestion!</p>
+
+<h3 class="wp-block-heading">Let's talk about Claim-Rich Alt Text (Not Just Descriptions)</h3>
+
+<p>Let's start with images. Most people think alt text is about describing what's in the picture. "A graph showing sales data." "A person using a laptop." That's accessibility 101, and it's important, but it's not enough for LLMs.</p>
+
+<p>Claim-rich alt text articulates the actual assertion the image is making. Instead of "graph showing sales data," try "Q4 2024 sales increased 34% year-over-year, reaching $2.3M, driven primarily by enterprise clients." See the difference? That's a claim. That's evidence. That's something an LLM can extract and cite.</p>
+
+<p>Think of your alt text as a micro-answer to "What does this image prove?" If you've got a diagram of a process, don't just say "diagram of photosynthesis." Say "Photosynthesis converts CO2 and water into glucose and oxygen using light energy, occurring in chloroplasts." That's citation-worthy content, so it is.</p>
+
+<p>For complex images, you can use longer alt text - up to 125-150 words is fine for substantive images. Don't be shy about including key data points, relationships, or conclusions the image demonstrates.</p>
+
+<h3 class="wp-block-heading">Next up Figure Captions as Structured Evidence</h3>
+
+<p>Now, captions are where you really shine. While alt text lives in the HTML, captions are visible to everyone - humans and machines alike. This is your chance to provide context, methodology, and interpretation.</p>
+
+<p>Structure your captions like a wee evidence package: Start with what the visual shows, include the source or methodology, add relevant context or caveats, and end with the key takeaway or implication.</p>
+
+<p>For example: "Figure 1: Customer retention rates by onboarding method (n=1,200 customers, Jan-Dec 2024). Customers who completed personalized onboarding showed 67% higher 12-month retention versus standard onboarding (89% vs 53%, p&lt;0.001). Data collected via internal CRM analytics. This suggests personalized onboarding significantly improves long-term customer value."</p>
+
+<p>That caption gives an LLM everything it needs to cite your visual as evidence: what it shows, how the data was collected, the statistical significance, and the interpretation. Sorted rightly.</p>
+
+<h3 class="wp-block-heading">Next Up Video Transcripts with Strategic Timestamps</h3>
+
+<p>Video is trickier because LLMs can't easily "read" video content unless you give them text to work with. That's where transcripts come in - but not just any transcript.</p>
+
+<p>Strategic timestamps break your video into claim-chunks. Instead of one big blob of transcript text, segment it by topic or claim with timestamps. Like this:</p>
+
+<p>[00:00-00:45] Introduction to entity optimization: Entities are the things, concepts, and relationships that AI systems use to understand content meaning.</p>
+
+<p>[00:45-02:30] Why entities matter for AEO: AI models build knowledge graphs from entity relationships, using these graphs to synthesize answers and determine authority.</p>
+
+<p>This segmentation helps LLMs retrieve the specific portion of your video relevant to a query. It's like RAG for video - you're pre-chunking the content in meaningful ways.</p>
+
+<p>Include the transcript directly on the page below the video, not hidden behind a toggle. Make it indexable and retrievable.</p>
+
+<h3 class="wp-block-heading">The next piece is VideoObject and AudioObject Schema</h3>
+
+<p>Schema is where you tie it all together. VideoObject and AudioObject schema tell search engines and LLMs the metadata they need to understand and cite your multimedia content.</p>
+
+<p>Key properties to include: name (clear, descriptive title), description (what claims or information the video/audio contains), uploadDate (freshness signal), duration (ISO 8601 format), thumbnailUrl (visual preview), contentUrl (direct link to the media file), embedUrl (if embeddable), transcript or caption (link to transcript or inline text).</p>
+
+<p>For video, also include: videoQuality (HD, SD, etc.), and interactionStatistic (view counts, if public).</p>
+
+<p>For audio/podcasts, include: episodeNumber and partOfSeries (connects to PodcastSeries schema).</p>
+
+<p>This structured data helps LLMs understand that your video isn't just decoration - it's a primary source of information that can be cited with confidence.</p>
+
+<h3 class="wp-block-heading">Here's the last advanced trick for Charts and Data Visualizations as Machine-Readable Assets</h3>
+
+<p>Here's a wee advanced trick: for charts and data visualizations, provide the underlying data in machine-readable format alongside the image.</p>
+
+<p>Include a simple HTML table with the data points, even if it's visually hidden (using aria-label or schema.org). Or provide a CSV download link. This lets LLMs verify the claims your chart is making by accessing the raw data.</p>
+
+<p>For infographics, break them down into component claims in the surrounding text. An infographic is really just several claims presented visually - so make those claims explicit in text form as well.</p>
+
+<p>Think of it this way: your visual is the human-friendly version, and your structured data is the machine-friendly version. Both should tell the same story, but in different languages.</p>
+
+<h2 class="wp-block-heading">Now for the Practical Implementation</h2>
+
+<p>Now let's get practical about how you actually implement this.</p>
+
+<p>Step 1: Audit your existing multimedia content. Pick your top 20-30 most important images, videos, or audio files. These are your citation candidates - the assets you most want LLMs to reference.</p>
+
+<p>Step 2: Rewrite alt text for those key images using the claim-rich approach. Ask yourself: "What evidence does this image provide?" Write that as your alt text. This should take about 2-3 minutes per image if you know your content well.</p>
+
+<p>Step 3: Add or enhance figure captions. If you don't have captions, add them. If you have weak captions ("Figure 1: Results"), beef them up with methodology, context, and interpretation. Use the evidence-package structure I mentioned.</p>
+
+<p>Step 4: For your most important videos, create segmented transcripts with timestamps. You can use tools like Otter.ai or Descript to generate base transcripts, then manually segment them by topic. Budget 30-45 minutes per video for this work.</p>
+
+<p>Step 5: Implement VideoObject or AudioObject schema on your most strategic multimedia content. If you're using WordPress, plugins like Yoast or RankMath can help. Otherwise, you'll need to add JSON-LD manually or work with your dev team. Start with 5-10 key assets.</p>
+
+<p>Pro tip from Method Q: Don't try to do everything at once. Focus on your pillar content first - the pages and posts that already rank well or that you're building entity authority around. Optimize the multimedia on those pages to premium citation-worthy status, then expand from there.</p>
+
+<p>Common pitfall to avoid: Don't use AI-generated alt text blindly. Tools like ChatGPT can describe images, but they often miss the specific claims or context that matters for your business. Review and enhance any AI-generated descriptions to ensure they're claim-rich and accurate.</p>
+
+<p>Timeline: You'll start seeing impact in 4-8 weeks as AI systems re-crawl and re-index your content. Monitor AI search citations and image appearances in AI-generated answers to measure success.</p>
+
+<p>Right, let's move into the Q&amp;A Lightning Round. I've pulled some brilliant questions from listeners about multimodal evidence design, and I'm going to give you rapid-fire answers you can actually use. Now, let's tackle some common questions about multimodal evidence design:</p>
+
+<p>Does this work for stock photos or only original images?</p>
+
+<p>It works for any image, but original images have a huge advantage. Stock photos might appear on dozens of sites with similar alt text, diluting attribution. Original charts, diagrams, infographics, or even annotated stock photos give you unique citation opportunities. If you must use stock, make your alt text and captions highly specific to your unique claims and context.</p>
+
+<p>Should I include keywords in my alt text for SEO?</p>
+
+<p>Don't optimize for keywords - optimize for claims. If your natural claim-rich alt text includes relevant terms, grand. But keyword-stuffing alt text hurts both accessibility and AI comprehension. Focus on accurately describing what the image proves or demonstrates, and the relevance will follow naturally.</p>
+
+<p>How long should video transcripts be before they become too much text?</p>
+
+<p>There's no real limit, but organization matters. For videos under 10 minutes, a single segmented transcript is fine. For longer content, consider splitting it into chapters or sections with their own headings. This helps both humans and LLMs navigate to relevant sections. Some of our Method Q clients have 45-minute webinar transcripts that perform brilliantly because they're well-structured with timestamps and topic headers.</p>
+
+<p>Do I need different schema for images embedded in articles versus standalone image pages?</p>
+
+<p>ImageObject schema can work in both contexts, but the surrounding schema matters. In an article, your ImageObject should sit within your Article schema. On a standalone image page, ImageObject can be the primary schema. The key is maintaining that hierarchical relationship so LLMs understand context.</p>
+
+<p>What about PDFs with images and charts - how do I optimize those?</p>
+
+<p>PDFs are tricky because their internal structure isn't always accessible to LLMs. Best practice: extract key charts and images from PDFs and publish them as separate, optimized assets on your site, with proper alt text, captions, and schema. Then reference those assets in or alongside the PDF. This gives LLMs something they can reliably cite.</p>
+
+<p>Is this worth the effort for small businesses with limited resources?</p>
+
+<p>Absolutely, but be strategic. Start with your 5-10 most important pages and optimize the multimedia there. Even a small business can achieve massive citation advantages by having properly optimized visuals when competitors don't. This is one of those areas where attention to detail beats budget, so it is.</p>
+
+<p>Let's wrap it up with the takeaway section. This section will give you that one actionable item you can work on.</p>
+
+<p>Here's your homework: Pick your single most important page - your flagship pillar content, your hero product page, whatever drives your business most. Find the 3-5 most important images, charts, or videos on that page.</p>
+
+<p>For each one, spend 15 minutes doing this: Rewrite the alt text as a claim-rich statement of what the visual proves, add or enhance the caption using the evidence-package structure I shared, and if it's a video, segment the transcript with topic timestamps.</p>
+
+<p>That's 45-75 minutes of focused work on your most strategic content. Do that this week, and you'll have transformed your most important page into a multimodal citation magnet. Next week, pick your second-most-important page and repeat. Build the habit, and you'll systematically strengthen your entire content library.</p>
+
+<p>Next episode, we're tackling Source Reputation and E-E-A-T Signals Tuned for Answer Engines. We'll explore how to elevate your first-party authority signals so LLMs trust you enough to cite you consistently. It's going to be class altogether. Enjoyed this episode? For foundations on this topic, revisit Season 1: Episode 7 on Multimodal Optimization where we introduced the basics of optimizing beyond text.</p>
+
+<p>Don't forget to visit AEODecoded.ai/ and sign up for our newsletter for exclusive resources and bonus content. And submit your question via the Q&amp;A form. I'll feature select questions in the Q&amp;A lightning round.</p>
+
+<p>Now, as we close out, you'll hear our outro track that captures the essence of today's episode — transforming your content into a multimodal citation magnet, one strategic visual at a time. The song reinforces that practical homework we talked about: pick your flagship page, optimize those key visuals, and build the habit that strengthens your entire content library.</p>
+
+<p>Thanks for spending these 15 minutes with me. Until next time, I'm Gary Crossey, helping you make your content speak AI fluently. May your content always earn answers, not just clicks!</p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+
+<h2 class="wp-block-heading">Key Takeaways</h2>
+
+<p> 📌 <strong>The Evidence Package</strong> — Transform multimedia using three layers: descriptive context, claim extraction, and attribution metadata.</p>
+
+<p> 🖼️ <strong>Claim-Rich Alt Text</strong> — Write alt text as factual statements with methodology, sample size, and dates.</p>
+
+<p> 🎥 <strong>Segmented Transcripts</strong> — Break transcripts into topic sections with timestamps for self-contained evidence.</p>
+
+<p>⚙️ <strong>Schema Implementation</strong> — Use VideoObject, AudioObject, and ImageObject schema with proper metadata.</p>
+
+<p>✅ <strong>45-Minute Action Plan</strong> — Pick flagship page, optimize 3-5 key visuals, 15 minutes each.</p>
+
+<hr class="wp-block-separator has-alpha-channel-opacity"/>
+
+<h2 class="wp-block-heading">Resources &amp; Links</h2>
+
+<ul class="wp-block-list">
+<li><strong>Related Episode:</strong> Season 1, Episode 7 on Multimodal Optimization</li>
+
+<li><strong>Newsletter:</strong> Sign up at <a href="http://AEODecoded.ai">AEODecoded.ai</a></li>
+
+<li><strong>Q&amp;A Submissions:</strong> Submit questions via the Q&amp;A form at <a href="http://AEODecoded.ai">AEODecoded.ai</a></li>
+
+<li><strong>Schema Resources:</strong> <a href="https://schema.org/VideoObject">VideoObject</a>, <a href="https://schema.org/AudioObject">AudioObject</a>, <a href="https://schema.org/ImageObject">ImageObject</a></li>
+</ul>
+
+<p></p>
