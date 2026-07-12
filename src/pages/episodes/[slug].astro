@@ -77,7 +77,7 @@ const schema = {
     <div class="notes" set:html={ep.descriptionHtml} />
 
     {(localTranscript || ep.transcript) && (
-      <section class="notes" aria-label="Episode transcript">
+      <section class="notes transcript-block" aria-label="Episode transcript">
         <h2>Transcript</h2>
         {localTranscript ? (
           <div set:html={localTranscript} />

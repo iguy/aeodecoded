@@ -281,6 +281,12 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 
 .notes img { max-width: 100%; height: auto; }
 
+.transcript-block {
+  background: #f0efe9;
+  padding: 2rem 2.2rem;
+  border-radius: 12px;
+}
+
 /* ------------------------------ prose ----------------------------- */
 
 .prose { max-width: 62ch; }
