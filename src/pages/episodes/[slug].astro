@@ -26,6 +26,24 @@ const noteKey = ep.idShort
   : null;
 const localTranscript = noteKey ? noteFiles[noteKey] : null;
 
+// Feed transcripts are flat plain text with no markup, but Transistor's
+// auto-generated ones still write short standalone section labels (e.g.
+// "Resources", "Component 1: Consistent Entity Naming") as their own
+// blank-line-delimited block. Treat those as headings instead of body text.
+const isHeadingLike = (block) =>
+  block.length > 0 &&
+  block.length <= 70 &&
+  !block.includes('\n') &&
+  !/[.!?:]$/.test(block);
+
+const transcriptBlocks = ep.transcript
+  ? ep.transcript
+      .split(/\n{2,}/)
+      .map((block) => block.trim())
+      .filter(Boolean)
+      .map((block) => ({ text: block, heading: isHeadingLike(block) }))
+  : [];
+
 const schema = {
   '@context': 'https://schema.org',
   '@type': 'PodcastEpisode',
@@ -77,13 +95,26 @@ const schema = {
     <div class="notes" set:html={ep.descriptionHtml} />
 
     {(localTranscript || ep.transcript) && (
-      <section class="notes transcript-block" aria-label="Episode transcript">
-        <h2 class="transcript-tab">Transcript</h2>
-        {localTranscript ? (
-          <div set:html={localTranscript} />
-        ) : (
-          ep.transcript.split(/\n{2,}/).map((para) => <p>{para}</p>)
-        )}
+      <section class="transcript-block" aria-label="Episode transcript" data-open="true">
+        <button type="button" class="transcript-tab" aria-expanded="true" aria-controls="transcript-panel">
+          <span>Transcript</span>
+          <svg class="transcript-tab-icon" viewBox="0 0 10 6" width="10" height="6" aria-hidden="true">
+            <path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+        </button>
+        <div class="transcript-collapse">
+          <div class="transcript-surface" id="transcript-panel">
+            <div class="transcript-card notes">
+              {localTranscript ? (
+                <div set:html={localTranscript} />
+              ) : (
+                transcriptBlocks.map((block) =>
+                  block.heading ? <h3>{block.text}</h3> : <p>{block.text}</p>
+                )
+              )}
+            </div>
+          </div>
+        </div>
       </section>
     )}
 
@@ -107,3 +138,15 @@ const schema = {
     </section>
   </article>
 </Base>
+
+<script>
+  const tab = document.querySelector('.transcript-tab');
+  const block = tab && tab.closest('.transcript-block');
+  if (tab && block) {
+    tab.addEventListener('click', () => {
+      const open = block.getAttribute('data-open') !== 'false';
+      block.setAttribute('data-open', String(!open));
+      tab.setAttribute('aria-expanded', String(!open));
+    });
+  }
+</script>

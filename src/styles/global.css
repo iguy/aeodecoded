@@ -283,21 +283,18 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 
 .transcript-block {
   position: relative;
-  background: #f0efe9;
-  border: 1px solid var(--line);
-  padding: 2rem 2.2rem;
   margin-top: 2.2rem;
-  border-radius: 0 12px 12px 12px;
-  font-family: var(--mono);
-  font-size: 0.75rem;
-  line-height: 1.4;
 }
 
-h2.transcript-tab {
+.transcript-tab {
   position: absolute;
   top: -1.9rem;
   left: -1px;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
   margin: 0;
+  border: none;
   background: var(--marker);
   color: var(--ink);
   font-family: var(--mono);
@@ -307,6 +304,48 @@ h2.transcript-tab {
   text-transform: uppercase;
   padding: 0.5rem 0.9rem;
   border-radius: 6px 6px 0 0;
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.transcript-tab:hover { transform: translateY(-2px); }
+.transcript-tab:active { transform: translateY(0) scale(0.94); }
+
+.transcript-tab-icon {
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.transcript-block[data-open="false"] .transcript-tab-icon {
+  transform: rotate(-90deg);
+}
+
+.transcript-collapse {
+  display: grid;
+  grid-template-rows: 1fr;
+  transition: grid-template-rows 0.45s cubic-bezier(0.65, 0, 0.35, 1);
+}
+
+.transcript-block[data-open="false"] .transcript-collapse {
+  grid-template-rows: 0fr;
+}
+
+.transcript-surface { overflow: hidden; }
+
+.transcript-card {
+  margin: 0;
+  max-width: none;
+  background: #f0efe9;
+  border: 1px solid var(--line);
+  padding: 2rem 2.2rem;
+  border-radius: 0 12px 12px 12px;
+  font-family: var(--mono);
+  font-size: 0.75rem;
+  line-height: 1.4;
+}
+
+.transcript-card h3 {
+  font-size: 0.85rem;
+  letter-spacing: 0.02em;
 }
 
 /* ------------------------------ prose ----------------------------- */
