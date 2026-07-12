@@ -1,0 +1,21 @@
+# WordPress → Edge redirects. Active on cutover.
+# Verify slugs against the live site before pointing DNS.
+
+/aeo-fundamentals/episode-2-2-advanced-schema-stacks-and-harmonization/ /episodes/ 301
+/aeo-fundamentals/episode-2-3-conversation-patterns-and-follow-up-funnels/ /episodes/ 301
+/aeo-fundamentals/episode-2-4-rag-aware-content-patterns/ /episodes/ 301
+/aeo-fundamentals/episode-2-5-multimodal-evidence-design-for-llms-aeo-decoded/ /episodes/ 301
+/aeo-fundamentals/episode-2-7-script-resilience-engineering-for-aeo/ /episodes/ 301
+
+# Pulled Season 3 episode → the explanation
+/podcast-episodes-and-show-notes/episode-3-1-building-your-aeo-tech-stack/ /the-reset/ 301
+/podcast-episodes-and-show-notes/* /episodes/ 301
+
+# Old pages
+/contact/ /about/ 301
+/blog/ /episodes/ 301
+/aeo-decoded-resources/ / 301
+/ai-tools-and-prompt-engineering/* / 301
+
+# Catch-all for the old episode namespace (must be last)
+/aeo-fundamentals/* /episodes/ 301

@@ -10,11 +10,19 @@ const schema = {
   '@type': 'Person',
   name: 'Gary Crossey',
   url: new URL('/about/', SITE.url).href,
-  jobTitle: 'Host, AEO Decoded',
+  jobTitle: 'Founder, Irishguy Design Studio',
   worksFor: {
     '@type': 'Organization',
     name: SITE.studioName,
     url: SITE.studioUrl,
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: '45 S French Broad Ave, Suite 170',
+      addressLocality: 'Asheville',
+      addressRegion: 'NC',
+      postalCode: '28801',
+      addressCountry: 'US',
+    },
   },
   email: 'mailto:garycrossey@irishguy.us',
   knowsAbout: [
@@ -45,11 +53,12 @@ const schema = {
       entities, structure, speed — into plain language and short, tactical episodes.
     </p>
     <p>
-      He's not a commentator. Through
-      <a href={SITE.studioUrl} rel="noopener">{SITE.studioName}</a>, Gary designs
-      and engineers the sites where these methods get tested — including this one,
-      which was rebuilt from WordPress to a custom edge architecture as the show's
-      own public test bench.
+      He's not a commentator. Gary is the founder of
+      <a href={SITE.studioUrl} rel="noopener">{SITE.studioName}</a> in Asheville,
+      North Carolina, where he designs and engineers the sites these methods get
+      tested on — for clients, and for the studio itself. AEO Decoded is an Irishguy
+      project: this site was rebuilt from WordPress to a custom edge architecture as
+      the show's own public test bench.
     </p>
 
     <h2>About the show</h2>
