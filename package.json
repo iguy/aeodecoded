@@ -13,13 +13,9 @@
   },
   "dependencies": {
     "@astrojs/sitemap": "^3.7.3",
-<<<<<<< HEAD
     "@fontsource-variable/archivo": "^5.2.8",
     "@fontsource/ibm-plex-mono": "^5.2.7",
     "astro": "^7.0.7",
     "fast-xml-parser": "^5.10.0"
-=======
-    "astro": "^7.0.7"
->>>>>>> 0f47335 (added astro sitemap integration)
   }
 }
