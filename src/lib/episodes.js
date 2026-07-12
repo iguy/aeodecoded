@@ -42,6 +42,13 @@ export async function getShow() {
     .filter((ep) => !EXCLUDED_SEASONS.includes(ep.season))
     .sort((a, b) => b.date - a.date);
 
+  await Promise.all(
+    episodes.map(async (ep) => {
+      ep.transcript = ep.transcriptUrl ? await fetchTranscript(ep.transcriptUrl) : null;
+      delete ep.transcriptUrl;
+    })
+  );
+
   // Guard against slug collisions
   const seen = new Map();
   for (const ep of episodes) {
@@ -113,6 +120,7 @@ function normalizeItem(item) {
     image: item['itunes:image']?.['@_href'] || null,
     guid: text(item.guid?.['#text'] ?? item.guid) || title,
     link: text(item.link) || null,
+    transcriptUrl: getTranscriptUrl(item),
     slug: makeSlug(title),
     id: season && number ? `S${season} · E${number}` : null,
     idShort: season && number ? `S${season}E${number}` : null,
@@ -161,6 +169,25 @@ function formatDuration(seconds) {
   if (!seconds) return null;
   const m = Math.round(seconds / 60);
   return `${m} min`;
+}
+
+function getTranscriptUrl(item) {
+  const raw = item['podcast:transcript'];
+  if (!raw) return null;
+  const list = Array.isArray(raw) ? raw : [raw];
+  const plain = list.find((t) => t?.['@_type'] === 'text/plain');
+  return plain?.['@_url'] || null;
+}
+
+async function fetchTranscript(url) {
+  try {
+    const res = await fetch(url);
+    if (!res.ok) return null;
+    const body = (await res.text()).replace(/\r\n/g, '\n').trim();
+    return body || null;
+  } catch {
+    return null;
+  }
 }
 
 function makeSlug(title) {

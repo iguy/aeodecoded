@@ -13,8 +13,9 @@ export async function getStaticPaths() {
 
 const { episode: ep } = Astro.props;
 
-// Companion transcripts live in src/notes/ as {sNeN}.html — matched by
-// episode number, so feed title changes never break the link.
+// Hand-migrated transcripts live in src/notes/ as {sNeN}.html — matched by
+// episode number. They take precedence over the feed transcript; the feed
+// is only used as a fallback when no local file exists.
 const noteFiles = import.meta.glob('../../notes/*.html', {
   query: '?raw',
   import: 'default',
@@ -23,7 +24,7 @@ const noteFiles = import.meta.glob('../../notes/*.html', {
 const noteKey = ep.idShort
   ? Object.keys(noteFiles).find((p) => p.endsWith(`/${ep.idShort.toLowerCase()}.html`))
   : null;
-const transcript = noteKey ? noteFiles[noteKey] : null;
+const localTranscript = noteKey ? noteFiles[noteKey] : null;
 
 const schema = {
   '@context': 'https://schema.org',
@@ -75,10 +76,14 @@ const schema = {
 
     <div class="notes" set:html={ep.descriptionHtml} />
 
-    {transcript && (
+    {(localTranscript || ep.transcript) && (
       <section class="notes" aria-label="Episode transcript">
-        <p class="field field--blue">Transcript // full written version</p>
-        <div set:html={transcript} />
+        <h2>Transcript</h2>
+        {localTranscript ? (
+          <div set:html={localTranscript} />
+        ) : (
+          ep.transcript.split(/\n{2,}/).map((para) => <p>{para}</p>)
+        )}
       </section>
     )}
 
