@@ -113,7 +113,7 @@ function normalizeItem(item) {
     image: item['itunes:image']?.['@_href'] || null,
     guid: text(item.guid?.['#text'] ?? item.guid) || title,
     link: text(item.link) || null,
-    slug: makeSlug(title, season, number),
+    slug: makeSlug(title),
     id: season && number ? `S${season} · E${number}` : null,
     idShort: season && number ? `S${season}E${number}` : null,
   };
@@ -163,13 +163,12 @@ function formatDuration(seconds) {
   return `${m} min`;
 }
 
-function makeSlug(title, season, number) {
-  const base = title
+function makeSlug(title) {
+  return title
     .toLowerCase()
     .replace(/['’]/g, '')
     .replace(/[^a-z0-9]+/g, '-')
     .replace(/^-+|-+$/g, '')
     .slice(0, 60)
     .replace(/-+$/g, '');
-  return season && number ? `s${season}e${number}-${base}` : base;
 }

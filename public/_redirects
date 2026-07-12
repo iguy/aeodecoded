@@ -19,3 +19,27 @@
 
 # Catch-all for the old episode namespace (must be last)
 /aeo-fundamentals/* /episodes/ 301
+
+# Episode slugs: dropped s{season}e{number}- prefix
+/episodes/s2e11-2-11-twenty-principles-for-aeo-answer-engine-optimization/ /episodes/2-11-twenty-principles-for-aeo-answer-engine-optimization/ 301
+/episodes/s2e10-2-10-putting-it-together-your-aeo-operating-cadence/ /episodes/2-10-putting-it-together-your-aeo-operating-cadence/ 301
+/episodes/s2e9-2-9-measurement-beyond-clicks-ai-presence-passage-level-lift/ /episodes/2-9-measurement-beyond-clicks-ai-presence-passage-level-lift/ 301
+/episodes/s1e19-2-8-industry-adapters-regulated-local-marketplace-and-ugc-pa/ /episodes/2-8-industry-adapters-regulated-local-marketplace-and-ugc-pa/ 301
+/episodes/s1e18-2-7-resilience-engineering-for-aeo/ /episodes/2-7-resilience-engineering-for-aeo/ 301
+/episodes/s1e17-2-6-e-e-a-t-for-answer-engines-building-trust-signals-that-a/ /episodes/2-6-e-e-a-t-for-answer-engines-building-trust-signals-that-a/ 301
+/episodes/s1e16-2-5-multimodal-evidence-design-for-llms/ /episodes/2-5-multimodal-evidence-design-for-llms/ 301
+/episodes/s1e15-2-4-rag-aware-content-patterns/ /episodes/2-4-rag-aware-content-patterns/ 301
+/episodes/s1e14-2-3-conversation-patterns-map-follow-up-questions-to-win-ai/ /episodes/2-3-conversation-patterns-map-follow-up-questions-to-win-ai/ 301
+/episodes/s1e13-2-2-advanced-schema-stacks/ /episodes/2-2-advanced-schema-stacks/ 301
+/episodes/s1e12-2-1-entity-graphs-in-practice/ /episodes/2-1-entity-graphs-in-practice/ 301
+/episodes/s1e11-2-0-aeo-decoded-making-your-content-speak-ai-fluently-season/ /episodes/2-0-aeo-decoded-making-your-content-speak-ai-fluently-season/ 301
+/episodes/s1e10-1-10-future-proofing-your-aeo-strategy-advanced-techniques-f/ /episodes/1-10-future-proofing-your-aeo-strategy-advanced-techniques-f/ 301
+/episodes/s1e9-1-9-the-faq-formula-structuring-content-for-maximum-ai-visib/ /episodes/1-9-the-faq-formula-structuring-content-for-maximum-ai-visib/ 301
+/episodes/s1e8-1-8-aeo-analytics-measuring-success-in-the-age-of-ai-search/ /episodes/1-8-aeo-analytics-measuring-success-in-the-age-of-ai-search/ 301
+/episodes/s1e7-1-7-aeo-decoded-optimize-your-content-for-ai-search/ /episodes/1-7-aeo-decoded-optimize-your-content-for-ai-search/ 301
+/episodes/s1e6-1-6-conversation-design-creating-content-for-dialogue-not-ju/ /episodes/1-6-conversation-design-creating-content-for-dialogue-not-ju/ 301
+/episodes/s1e5-1-5-context-and-intent-understanding-what-users-really-want/ /episodes/1-5-context-and-intent-understanding-what-users-really-want/ 301
+/episodes/s1e4-1-4-entity-optimization-becoming-a-subject-authority/ /episodes/1-4-entity-optimization-becoming-a-subject-authority/ 301
+/episodes/s1e3-1-3-structured-data-making-your-content-ai-friendly/ /episodes/1-3-structured-data-making-your-content-ai-friendly/ 301
+/episodes/s1e2-1-2-question-based-content-the-secret-sauce-of-aeo/ /episodes/1-2-question-based-content-the-secret-sauce-of-aeo/ 301
+/episodes/s1e1-1-1-from-seo-to-aeo-why-your-content-needs-to-speak-ai/ /episodes/1-1-from-seo-to-aeo-why-your-content-needs-to-speak-ai/ 301
