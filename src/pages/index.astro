@@ -6,6 +6,7 @@ import { SITE, PLATFORMS } from '../config.js';
 
 const show = await getShow();
 const latest = show.episodes.slice(0, 6);
+const s3Latest = show.episodes.find((ep) => ep.season === 3);
 
 const schema = {
   '@context': 'https://schema.org',
@@ -37,21 +38,24 @@ const schema = {
   </section>
 
   <aside class="reset-banner">
-    <p class="field">Announcement // Season 3</p>
-    <h2>We pulled Season 3 and started over.</h2>
+    <p class="field">Now playing // Season 3</p>
+    <h2>Season 3 is live.</h2>
     <p>
-      Two episodes in, the advice was true — but conditional. So we stopped, rebuilt
-      this site from WordPress to the edge, and set a new editorial standard: nothing
-      ships unless it's a principle or a tested result. This site is now the test bench.
+      Season 3 runs on one editorial standard: nothing ships unless it's a principle
+      or a tested result. The AEO Decoded site, rebuilt from WordPress to the edge,
+      is the test bench.
     </p>
-    <a class="go" href="/the-reset/">Read why →</a>
+    {s3Latest && (
+      <a class="go" href={`/episodes/${s3Latest.slug}/`}>Listen to the latest Season 3 episode: {s3Latest.title} →</a>
+    )}
+    <p><a href="/the-reset/">Why AEO Decoded paused Season 3 and rebuilt the site →</a></p>
   </aside>
 
   <section class="season-block">
     <span class="field">Latest episodes</span>
     <EpisodeLedger episodes={latest} />
     <p style="margin-top:1rem;">
-      <a href="/episodes/">All episodes, Seasons 1–2 →</a>
+      <a href="/episodes/">All episodes, Seasons 1–3 →</a>
     </p>
   </section>
 

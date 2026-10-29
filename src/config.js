@@ -20,8 +20,8 @@ export const SITE = {
   studioUrl: 'https://www.irishguydesign.studio/',
 };
 
-// Exclude these seasons from the site (Season 3 relaunches fresh).
-export const EXCLUDED_SEASONS = [3];
+// Exclude these seasons from the site. Season 3 is live as of Oct 2026.
+export const EXCLUDED_SEASONS = [];
 
 export const PLATFORMS = [
   { name: 'Apple Podcasts', url: 'https://podcasts.apple.com/podcast/aeo-decoded/id1830381021' },
