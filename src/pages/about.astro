@@ -96,12 +96,18 @@ const schema = { '@context': 'https://schema.org', '@graph': [person, themeSong]
     <p>
       The AEO Decoded podcast has its own theme song, "{THEME_SONG.name}," on Spotify.
     </p>
-    <div class="spotify-facade" data-spotify-id={THEME_SONG.spotifyId}>
-      <button type="button" class="button spotify-load">
-        Play "{THEME_SONG.name}" on Spotify
-      </button>
+    <div class="spotify-player">
+      <iframe
+        src={`https://open.spotify.com/embed/track/${THEME_SONG.spotifyId}`}
+        title={`"${THEME_SONG.name}" theme song on Spotify`}
+        width="100%"
+        height="152"
+        style="border:0;border-radius:12px;"
+        allow="clipboard-write; encrypted-media; fullscreen; picture-in-picture"
+        loading="lazy"
+      ></iframe>
       <p class="spotify-note">
-        Loads the Spotify player. Or <a href={THEME_SONG.url} rel="noopener">open "{THEME_SONG.name}" in Spotify</a>.
+        Or <a href={THEME_SONG.url} rel="noopener">open "{THEME_SONG.name}" in Spotify</a>.
       </p>
     </div>
     <details class="lyrics">
@@ -113,22 +119,6 @@ const schema = { '@context': 'https://schema.org', '@graph': [person, themeSong]
         </div>
       ))}
     </details>
-    <script>
-      document.querySelectorAll('.spotify-facade').forEach((box) => {
-        box.querySelector('.spotify-load')?.addEventListener('click', () => {
-          const id = box.getAttribute('data-spotify-id');
-          const frame = document.createElement('iframe');
-          frame.src = `https://open.spotify.com/embed/track/${id}?autoplay=1`;
-          frame.title = 'AEO Decoded theme song on Spotify';
-          frame.width = '100%';
-          frame.height = '152';
-          frame.style.border = '0';
-          frame.style.borderRadius = '12px';
-          frame.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
-          box.replaceChildren(frame);
-        });
-      });
-    </script>
 
     <h2>Get in touch</h2>
     <p>
