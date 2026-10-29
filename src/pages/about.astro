@@ -43,6 +43,14 @@ const themeSong = {
   byArtist: { '@type': 'MusicGroup', name: THEME_SONG.artist },
   about: { '@type': 'PodcastSeries', name: SITE.title, url: SITE.url },
   description: `The theme song of the ${SITE.title} podcast.`,
+  recordingOf: {
+    '@type': 'MusicComposition',
+    name: THEME_SONG.name,
+    lyrics: {
+      '@type': 'CreativeWork',
+      text: THEME_SONG.lyrics.map((s) => s.lines.join('\n')).join('\n\n'),
+    },
+  },
 };
 
 const schema = { '@context': 'https://schema.org', '@graph': [person, themeSong] };
@@ -96,6 +104,16 @@ const schema = { '@context': 'https://schema.org', '@graph': [person, themeSong]
         Loads the Spotify player. Or <a href={THEME_SONG.url} rel="noopener">open "{THEME_SONG.name}" in Spotify</a>.
       </p>
     </div>
+    <details class="lyrics">
+      <summary>Lyrics to "{THEME_SONG.name}"</summary>
+      {THEME_SONG.lyrics.map((sec) => (
+        <div class="lyrics-section">
+          <p class="field">{sec.label}</p>
+          <p>{sec.lines.map((line, i) => (<>{line}{i < sec.lines.length - 1 && <br />}</>))}</p>
+        </div>
+      ))}
+      <p class="spotify-note">The chorus and bridge are instrumental.</p>
+    </details>
     <script>
       document.querySelectorAll('.spotify-facade').forEach((box) => {
         box.querySelector('.spotify-load')?.addEventListener('click', () => {

@@ -411,3 +411,7 @@ h3 { font-size: 1.15rem; font-weight: 700; }
 /* --------------------------- spotify facade --------------------------- */
 .spotify-facade { margin: 1rem 0 2rem; }
 .spotify-note { font-size: 0.875rem; color: var(--muted); margin-top: 0.5rem; }
+.lyrics { margin: 0 0 2rem; border-top: 1px solid var(--line); padding-top: 1rem; }
+.lyrics summary { cursor: pointer; font-weight: 600; color: var(--blue); }
+.lyrics-section { margin-top: 1rem; }
+.lyrics-section p { margin: 0.25rem 0; }
