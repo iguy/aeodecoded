@@ -33,3 +33,12 @@ export const PLATFORMS = [
   { name: 'Player FM', url: 'https://player.fm/series/series-3680881' },
   { name: 'Podchaser', url: 'https://www.podchaser.com/podcasts/aeo-decoded-6171125' },
 ];
+
+// The AEO Decoded theme song on Spotify.
+export const THEME_SONG = {
+  name: 'AEO Decoded',
+  artist: 'AEO Decoded',
+  spotifyId: '6CSG3L3FmIvzeBIfcCoy0m',
+  url: 'https://open.spotify.com/track/6CSG3L3FmIvzeBIfcCoy0m',
+  duration: 'PT3M2S',
+};

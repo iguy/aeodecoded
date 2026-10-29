@@ -3,7 +3,7 @@ import '@fontsource-variable/archivo';
 import '@fontsource/ibm-plex-mono/400.css';
 import '@fontsource/ibm-plex-mono/500.css';
 import '../styles/global.css';
-import { SITE } from '../config.js';
+import { SITE, THEME_SONG } from '../config.js';
 
 const {
   title = SITE.title,
@@ -60,6 +60,9 @@ const pageTitle =
         <span>
           An <a href={SITE.studioUrl} rel="noopener">{SITE.studioName}</a> project —
           built, tested, and proven in-house.
+        </span>
+        <span>
+          Theme song: <a href="/about/#theme-song">"{THEME_SONG.name}" on the About page</a>
         </span>
       </div>
     </footer>

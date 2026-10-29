@@ -1,13 +1,13 @@
 ---
 import Base from '../layouts/Base.astro';
-import { SITE, PLATFORMS } from '../config.js';
+import { SITE, PLATFORMS, THEME_SONG } from '../config.js';
 
 const description =
   'Gary Crossey is the host of AEO Decoded and founder of Irishguy Design Studio in Asheville, NC. He builds and tests the Answer Engine Optimization methods the show teaches.';
 
-const schema = {
-  '@context': 'https://schema.org',
+const person = {
   '@type': 'Person',
+  '@id': new URL('/about/#gary-crossey', SITE.url).href,
   name: 'Gary Crossey',
   url: new URL('/about/', SITE.url).href,
   jobTitle: 'Founder, Irishguy Design Studio',
@@ -32,6 +32,20 @@ const schema = {
     'Brand and web design',
   ],
 };
+
+const themeSong = {
+  '@type': 'MusicRecording',
+  '@id': new URL('/about/#theme-song', SITE.url).href,
+  name: THEME_SONG.name,
+  url: THEME_SONG.url,
+  sameAs: [THEME_SONG.url],
+  duration: THEME_SONG.duration,
+  byArtist: { '@type': 'MusicGroup', name: THEME_SONG.artist },
+  about: { '@type': 'PodcastSeries', name: SITE.title, url: SITE.url },
+  description: `The theme song of the ${SITE.title} podcast.`,
+};
+
+const schema = { '@context': 'https://schema.org', '@graph': [person, themeSong] };
 ---
 
 <Base title="About Gary Crossey" description={description} schema={schema} currentPath="/about/">
@@ -69,6 +83,35 @@ const schema = {
       public. The editorial rule is simple — every episode is a principle or a
       tested result. Nothing else ships.
     </p>
+
+    <h2 id="theme-song">The AEO Decoded theme song</h2>
+    <p>
+      The AEO Decoded podcast has its own theme song, "{THEME_SONG.name}," on Spotify.
+    </p>
+    <div class="spotify-facade" data-spotify-id={THEME_SONG.spotifyId}>
+      <button type="button" class="button spotify-load">
+        Play "{THEME_SONG.name}" on Spotify
+      </button>
+      <p class="spotify-note">
+        Loads the Spotify player. Or <a href={THEME_SONG.url} rel="noopener">open "{THEME_SONG.name}" in Spotify</a>.
+      </p>
+    </div>
+    <script>
+      document.querySelectorAll('.spotify-facade').forEach((box) => {
+        box.querySelector('.spotify-load')?.addEventListener('click', () => {
+          const id = box.getAttribute('data-spotify-id');
+          const frame = document.createElement('iframe');
+          frame.src = `https://open.spotify.com/embed/track/${id}?autoplay=1`;
+          frame.title = 'AEO Decoded theme song on Spotify';
+          frame.width = '100%';
+          frame.height = '152';
+          frame.style.border = '0';
+          frame.style.borderRadius = '12px';
+          frame.allow = 'autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture';
+          box.replaceChildren(frame);
+        });
+      });
+    </script>
 
     <h2>Get in touch</h2>
     <p>

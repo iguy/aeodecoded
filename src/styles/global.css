@@ -407,3 +407,7 @@ h3 { font-size: 1.15rem; font-weight: 700; }
     to { background-position: 0 0; }
   }
 }
+
+/* --------------------------- spotify facade --------------------------- */
+.spotify-facade { margin: 1rem 0 2rem; }
+.spotify-note { font-size: 0.875rem; color: var(--muted); margin-top: 0.5rem; }
