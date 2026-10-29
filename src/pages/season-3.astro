@@ -12,11 +12,11 @@ const schema = {
   description,
   author: { '@type': 'Person', name: SITE.author },
   publisher: { '@type': 'Organization', name: SITE.studioName, url: SITE.studioUrl },
-  mainEntityOfPage: new URL('/the-reset/', SITE.url).href,
+  mainEntityOfPage: new URL('/season-3/', SITE.url).href,
 };
 ---
 
-<Base title="Season 3: Back to Basics" description={description} schema={schema} currentPath="/the-reset/">
+<Base title="Season 3: Back to Basics" description={description} schema={schema} currentPath="/season-3/">
   <article class="prose">
     <header class="episode-head">
       <p class="field field--blue">Season 3</p>
