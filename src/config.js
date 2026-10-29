@@ -41,24 +41,21 @@ export const THEME_SONG = {
   spotifyId: '6CSG3L3FmIvzeBIfcCoy0m',
   url: 'https://open.spotify.com/track/6CSG3L3FmIvzeBIfcCoy0m',
   duration: 'PT3M2S',
-  // Sung sections only. Chorus and bridge are instrumental.
+  // Sung sections only.
   lyrics: [
     { label: 'Verse 1', lines: [
       'A-E-O decoded',
       'Making it clear',
-      'Season three is here',
-      'Now for your host Gary Crossey',
+      "Framework's the key",
+      'Static sites running clean',
     ]},
     { label: 'Verse 2', lines: [
       'A-E-O decoded',
-      "Framework's the key",
-      'Static sites running clean',
       'No noise in between',
       'Real results, not theory',
       'Tested proof, no guessing',
       "A-E-O decoded we're decoding",
       "Working stacks, we're showing",
-      'With Gary Crossey at the helm',
       'Every claim we can confirm',
       'From broken builds to clean semantics',
       'A-E-O decoded results are the verdict',
@@ -66,8 +63,7 @@ export const THEME_SONG = {
     { label: 'Outro', lines: [
       'A-E-O decoded',
       'Making it clear',
-      'Season three is here',
-      "Gary Crossey's voice so clear",
+      'Decoding never stops here',
     ]},
   ],
 };

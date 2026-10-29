@@ -112,7 +112,6 @@ const schema = { '@context': 'https://schema.org', '@graph': [person, themeSong]
           <p>{sec.lines.map((line, i) => (<>{line}{i < sec.lines.length - 1 && <br />}</>))}</p>
         </div>
       ))}
-      <p class="spotify-note">The chorus and bridge are instrumental.</p>
     </details>
     <script>
       document.querySelectorAll('.spotify-facade').forEach((box) => {
